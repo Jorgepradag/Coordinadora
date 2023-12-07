@@ -1,0 +1,83 @@
+*{
+    
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }     
+  nav {
+    background-color: #106EB9;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  nav span {
+    margin-right: 10px;
+    color: white;
+    
+  }
+  
+  input {
+    margin-right: 10px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 4px;
+  }
+  /* Datos Cliente */
+
+  .customer-header {
+    background-color: #106EB9;
+    color: white;
+    padding: 5px; 
+    margin: 0; 
+    margin-right: auto;
+    
+  }
+
+  .customer-data {
+    padding: 40px;
+    max-width: 500px;
+  }
+
+  
+
+  .customer-info {
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid #ccc; 
+    border-radius: 2px; 
+    padding: 20px;  
+  }
+
+
+
+/* Datos Remitente */
+  
+  .data-info {
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid #ccc; 
+    border-radius: 2px; 
+    padding: 20px;  
+  }
+  
+  .data-entry {
+    margin-bottom: 10px;
+  }
+  
+  .info-box,
+  .map-box {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 10px;
+    margin-top: 10px;
+  }
+
+  
