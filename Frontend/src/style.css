@@ -42,6 +42,7 @@ header {
   .customer-data {
     padding: 40px;
     max-width: 500px;
+    
   }
 
   
@@ -58,26 +59,107 @@ header {
 
 /* Datos Remitente */
   
-  .data-info {
-    display: flex;
-    flex-direction: column;
-    display: flex;
-    justify-content: space-around;
-    border: 1px solid #ccc; 
-    border-radius: 2px; 
-    padding: 20px;  
-  }
-  
-  .data-entry {
-    margin-bottom: 10px;
-  }
-  
-  .info-box,
-  .map-box {
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    padding: 10px;
-    margin-top: 10px;
-  }
+.customer-datas {
+  padding: 40px;
+  max-width: 500px;
+}
 
+.customer-header {
+  background-color: #106EB9;
+  color: white;
+  padding: 5px;
+  margin: 0;
+  margin-right: auto;
+}
+
+.data-info-container {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #ccc; 
+  border-radius: 2px; 
+}
+
+.data-info {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
   
+}
+
+.data-entry {
+  margin-bottom: 10px;
+}
+
+.info-box,
+.map-box {
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  padding: 10px;
+  margin-top: 10px;
+  
+}
+
+.large-number {
+  font-size: 4em; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+.info-content {
+  text-align: center;
+}
+  
+.customer-datas-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+body {
+  margin: 0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  
+}
+
+.nav-bar{
+  background-color: #072D4B;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+  max-width: 1250px;
+  }
+.menu-nav {
+  background-color: #106EB9;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+  max-width: 1250px;
+  
+}
+
+.menu-nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.menu-nav li {
+  margin-right: 101px;
+}
+
+.blank-space {
+  height: 200px; 
+}
+
+.centered-image { 
+  width: 100%;
+  height: auto;
+}

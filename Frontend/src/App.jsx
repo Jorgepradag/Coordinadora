@@ -1,70 +1,197 @@
+import { useState } from 'react';
+import oopsImage from './assets/oops.jpg';
+
 function App() {
+  const [guiaEncontrada, setGuiaEncontrada] = useState(null);
+  const [datosGuia, setDatosGuia] = useState({
+    cliente: { nit: 'N/A', razon_social: 'N/A' },
+    remitente: { /* ... */ },
+    destinatario: { /* ... */ },
+  });
+
+  const handleSearch = async () => {
+    const guiaInput = document.getElementById('guiaInput');
+    const guiaValue = guiaInput.value.trim();
+
+    if (guiaValue === '') {
+      alert('Por favor, ingrese una guía compuesta por 11 caracteres.');
+    } else {
+      console.log('Realizando búsqueda para la guía:', guiaValue);
+      try {
+        const response = await fetch(`http://localhost:3000/api/v1/guia/${guiaValue}`);
+        const data = await response.json();
+
+        if (data.guia_encontrada) {
+          console.log('Guía encontrada:', data.dato_guia);
+          setGuiaEncontrada(true);
+          setDatosGuia(data.dato_guia);
+        } else {
+          console.log('No se encontró información asociada a la guía.');
+          setGuiaEncontrada(false);
+          setDatosGuia({
+            cliente: { nit: 'N/A', razon_social: 'N/A' },
+            remitente: { /* ... */ },
+            destinatario: { /* ... */ },
+          });
+        }
+      } catch (error) {
+        console.error('Error al buscar la guía:', error);
+      }
+    }
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   return (
     <div className="App">
       <header>
         <img
           src="https://static.wixstatic.com/media/3e3f07_9d3c6586d31c490c951abec8090b1088~mv2.jpg/v1/crop/x_0,y_4,w_587,h_128/fill/w_558,h_122,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/LOGO%203.jpg"
           alt="Logo"
-          style={{ width: '250px'}}
+          style={{ width: '250px' }}
         />
       </header>
       <nav>
         <span>Buscar Guía:</span>
-        <input type="text" />
-        <button>Buscar</button>
+        <input
+          type="text"
+          id="guiaInput"
+          maxLength={11}
+          onKeyPress={handleKeyPress}
+        />
+        <button onClick={handleSearch}>Buscar</button>
       </nav>
 
-      
-      <section className="customer-data">
-        <div className="customer-header">
-          <h3>Datos del cliente</h3>
+      {guiaEncontrada === null && <p>Ingrese una guía para buscar.</p>}
+      {guiaEncontrada === false && (
+        <div className="guia-no-encontrada">
+          <img src={oopsImage} alt="Guía no encontrada" className="centered-image" />
+          <p>No se encontró información asociada a la guía.</p>
         </div>
-        <div className="customer-info">
-          <div className="data-entry">
-            <label>Nit:</label>
-            <span>123456789</span>
-          </div>
-          <div className="data-entry">
-            <label>Razon Social:</label>
-            <span>Mi Empresa S.A.</span>
-          </div>
-        </div>
-      </section>
+      )}
 
-      <section className="customer-data">
+      {guiaEncontrada && (
+        <>
+          <section className="customer-data">
+            <div className="customer-header">
+              <h3>Datos del cliente</h3>
+            </div>
+            <div className="customer-info">
+              <div className="data-entry">
+                <label>Nit:</label>
+                <span>{datosGuia?.cliente?.nit || 'N/A'}</span>
+              </div>
+              <div className="data-entry">
+                <label>Razon Social:</label>
+                <span>{datosGuia?.cliente?.razon_social || 'N/A'}</span>
+              </div>
+            </div>
+          </section>
+
+
+      <div className="customer-datas-container">
+      <section className="customer-datas">
         <div className="customer-header">
           <h3>Datos del Remitente</h3>
         </div>
-        <div className="data-info">
-          <div className="data-entry">
-            <label>Nit:</label>
-            <span>987654321</span>
+        <div className="data-info-container">
+          <div className="data-info">
+            <div className="data-entry">
+              <label>Nit:</label>
+              <span>987654321</span>
+            </div>
+            <div className="data-entry">
+              <label>Nombre:</label>
+              <span>Remitente Nombre</span>
+            </div>
+            <div className="data-entry">
+              <label>Teléfono:</label>
+              <span>555-1234</span>
+            </div>
+            <div className="data-entry">
+              <label>Dirección:</label>
+              <span>Dirección del Remitente</span>
+            </div>
+            <div className="data-entry">
+              <label>Ciudad:</label>
+              <span>Ciudad del Remitente</span>
+            </div>
           </div>
-          <div className="data-entry">
-            <label>Nombre:</label>
-            <span>Remitente Nombre</span>
-          </div>
-          <div className="data-entry">
-            <label>Teléfono:</label>
-            <span>555-1234</span>
-          </div>
-          <div className="data-entry">
-            <label>Dirección:</label>
-            <span>Dirección del Remitente</span>
-          </div>
-          <div className="data-entry">
-            <label>Ciudad:</label>
-            <span>Ciudad del Remitente</span>
-          </div>
-          <div className="info-box">
-            <h4>Equipo de Recogida</h4>
-            <span>Número: 30</span>
-          </div>
-          <div className="map-box">
-            <h4>Ubicar Dirección en el Mapa</h4>
+          <div className="data-aside">
+            <div className="info-box">
+              <div className="info-content">
+                <h4>Equipo de Recogida</h4>
+                <span className="large-number">30</span>
+              </div>
+            </div>
+            <div className="map-box">
+              <h4>Ubicar Dirección en el Mapa</h4>
+            </div>
           </div>
         </div>
       </section>
+
+      <section className="customer-datas">
+        <div className="customer-header">
+          <h3>Datos del Destinatario</h3>
+        </div>
+        <div className="data-info-container">
+          <div className="data-info">
+            <div className="data-entry">
+              <label>Nombre:</label>
+              <span>Destinatario Nombre</span>
+            </div>
+            <div className="data-entry">
+              <label>Teléfono:</label>
+              <span>555-5678</span>
+            </div>
+            <div className="data-entry">
+              <label>Dirección:</label>
+              <span>Dirección del Destinatario</span>
+            </div>
+            <div className="data-entry">
+              <label>Ciudad:</label>
+              <span>Ciudad del Destinatario</span>
+            </div>
+          </div>
+          <div className="data-aside">
+            <div className="info-box">
+              <div className="info-content">
+                <h4>Equipo de Entrega</h4>
+                <span className="large-number">28</span>
+              </div>
+            </div>
+            <div className="map-box">
+              <h4>Ubicar Dirección en el Mapa</h4>
+            </div>
+          </div>
+        </div>
+      </section>
+      </div>
+
+      <div className="app-container">
+      <nav className="nav-bar">
+        <h3>Unidades en la Guía</h3>
+      </nav>
+      <nav className="menu-nav">
+        <ul>
+          <li>Unidad</li>
+          <li>Etiqueta 1D</li>
+          <li>Etiqueta 2D</li>
+          <li>Referencia</li>
+          <li>F. Recogida</li>
+          <li>F. Entrega</li>
+          <li>Estado Tracking</li>
+        </ul>
+      </nav>
+      <div className="blank-space"></div>
+    </div>
+    </>
+      )}
     </div>
   )
 }
