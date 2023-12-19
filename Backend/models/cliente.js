@@ -11,10 +11,14 @@ export default class cliente extends Model {
       primaryKey: true
     },
     nit: {
+      type: DataTypes.STRING(15),
+      allowNull: true
+    },
+    razon_social: {
       type: DataTypes.STRING(255),
       allowNull: false
     },
-    razon_social: {
+    div: {
       type: DataTypes.STRING(255),
       allowNull: false
     }

@@ -15,10 +15,22 @@ export default class remitente extends Model {
       allowNull: false
     },
     telefono: {
+      type: DataTypes.STRING(20),
+      allowNull: true
+    },
+    div: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
+    nit: {
+      type: DataTypes.STRING(15),
+      allowNull: false
+    },
     direccion: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    equipo: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
@@ -26,9 +38,13 @@ export default class remitente extends Model {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    nit: {
-      type: DataTypes.STRING(255),
-      allowNull: false
+    lat: {
+      type: DataTypes.DECIMAL,
+      allowNull: true
+    },
+    lng: {
+      type: DataTypes.DECIMAL,
+      allowNull: true
     }
   }, {
     sequelize,

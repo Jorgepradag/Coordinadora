@@ -11,8 +11,49 @@ export default class guias extends Model {
       primaryKey: true
     },
     numero_guia: {
-      type: DataTypes.STRING(255),
-      allowNull: false
+      type: DataTypes.STRING(20),
+      allowNull: true,
+      unique: "guias_numero_guia_key"
+    },
+    cliente_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'cliente',
+        key: 'id'
+      }
+    },
+    destinatario_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'destinatario',
+        key: 'id'
+      }
+    },
+    remitente_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'remitente',
+        key: 'id'
+      }
+    },
+    ultimo_estado_tracking_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'ultimo_estado_tracking',
+        key: 'id'
+      }
+    },
+    unidad_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'unidad',
+        key: 'id'
+      }
     }
   }, {
     sequelize,
@@ -20,6 +61,13 @@ export default class guias extends Model {
     schema: 'public',
     timestamps: false,
     indexes: [
+      {
+        name: "guias_numero_guia_key",
+        unique: true,
+        fields: [
+          { name: "numero_guia" },
+        ]
+      },
       {
         name: "guias_pkey",
         unique: true,

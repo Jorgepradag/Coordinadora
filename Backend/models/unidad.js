@@ -1,7 +1,7 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class unidadesguia extends Model {
+export default class unidad extends Model {
   static init(sequelize, DataTypes) {
   return super.init({
     id: {
@@ -10,9 +10,17 @@ export default class unidadesguia extends Model {
       allowNull: false,
       primaryKey: true
     },
-    numeroguia: {
+    total: {
       type: DataTypes.STRING(255),
-      allowNull: false
+      allowNull: true
+    },
+    numero_unidad: {
+      type: DataTypes.DECIMAL,
+      allowNull: true
+    },
+    referencia_detalle: {
+      type: DataTypes.STRING(255),
+      allowNull: true
     },
     etiqueta1d: {
       type: DataTypes.STRING(255),
@@ -26,50 +34,22 @@ export default class unidadesguia extends Model {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    fecharecogida: {
+    fecha_hora_recogida: {
       type: DataTypes.DATEONLY,
       allowNull: true
     },
-    fechaentrega: {
+    fecha_hora_entrega: {
       type: DataTypes.DATEONLY,
       allowNull: true
-    },
-    estadotracking: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    remitente_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'remitente',
-        key: 'id'
-      }
-    },
-    destinatario_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'destinatario',
-        key: 'id'
-      }
-    },
-    cliente_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'cliente',
-        key: 'id'
-      }
     }
   }, {
     sequelize,
-    tableName: 'unidadesguia',
+    tableName: 'unidad',
     schema: 'public',
     timestamps: false,
     indexes: [
       {
-        name: "unidadesguia_pkey",
+        name: "unidad_pkey",
         unique: true,
         fields: [
           { name: "id" },

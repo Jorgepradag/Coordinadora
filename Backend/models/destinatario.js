@@ -15,7 +15,7 @@ export default class destinatario extends Model {
       allowNull: false
     },
     telefono: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(20),
       allowNull: true
     },
     direccion: {
@@ -30,9 +30,13 @@ export default class destinatario extends Model {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    nit: {
-      type: DataTypes.STRING(255),
-      allowNull: false
+    lat: {
+      type: DataTypes.DECIMAL,
+      allowNull: true
+    },
+    lng: {
+      type: DataTypes.DECIMAL,
+      allowNull: true
     }
   }, {
     sequelize,

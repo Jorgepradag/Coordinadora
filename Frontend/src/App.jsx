@@ -3,11 +3,7 @@ import oopsImage from './assets/oops.jpg';
 
 function App() {
   const [guiaEncontrada, setGuiaEncontrada] = useState(null);
-  const [datosGuia, setDatosGuia] = useState({
-    cliente: { nit: 'N/A', razon_social: 'N/A' },
-    remitente: { /* ... */ },
-    destinatario: { /* ... */ },
-  });
+  const [datosGuia, setDatosGuia] = useState();
 
   const handleSearch = async () => {
     const guiaInput = document.getElementById('guiaInput');
@@ -19,6 +15,7 @@ function App() {
       console.log('Realizando búsqueda para la guía:', guiaValue);
       try {
         const response = await fetch(`http://localhost:3000/api/v1/guia/${guiaValue}`);
+
         const data = await response.json();
 
         if (data.guia_encontrada) {
@@ -66,31 +63,31 @@ function App() {
         <button onClick={handleSearch}>Buscar</button>
       </nav>
 
-      {guiaEncontrada === null && <p>Ingrese una guía para buscar.</p>}
+      {guiaEncontrada === null }
       {guiaEncontrada === false && (
         <div className="guia-no-encontrada">
           <img src={oopsImage} alt="Guía no encontrada" className="centered-image" />
-          <p>No se encontró información asociada a la guía.</p>
         </div>
       )}
 
+
       {guiaEncontrada && (
         <>
-          <section className="customer-data">
-            <div className="customer-header">
-              <h3>Datos del cliente</h3>
-            </div>
-            <div className="customer-info">
-              <div className="data-entry">
-                <label>Nit:</label>
-                <span>{datosGuia?.cliente?.nit || 'N/A'}</span>
-              </div>
-              <div className="data-entry">
-                <label>Razon Social:</label>
-                <span>{datosGuia?.cliente?.razon_social || 'N/A'}</span>
-              </div>
-            </div>
-          </section>
+         <section className="customer-data">
+      <div className="customer-header">
+        <h3>Datos del cliente</h3>
+      </div>
+      <div className="customer-info">
+        <div className="data-entry">
+          <label>Nit:</label>
+          <span>{datosGuia?.cliente?.nit || 'N/A'}</span>
+        </div>
+        <div className="data-entry">
+          <label>Razon Social:</label>
+          <span>{datosGuia?.cliente?.razon_social || 'N/A'}</span>
+        </div>
+      </div>
+    </section>
 
 
       <div className="customer-datas-container">
@@ -102,23 +99,23 @@ function App() {
           <div className="data-info">
             <div className="data-entry">
               <label>Nit:</label>
-              <span>987654321</span>
+              <span>{datosGuia?.remitente?.nit}</span>
             </div>
             <div className="data-entry">
               <label>Nombre:</label>
-              <span>Remitente Nombre</span>
+              <span>{datosGuia?.remitente?.nombre}</span>
             </div>
             <div className="data-entry">
               <label>Teléfono:</label>
-              <span>555-1234</span>
+              <span>{datosGuia?.remitente?.telefono}</span>
             </div>
             <div className="data-entry">
               <label>Dirección:</label>
-              <span>Dirección del Remitente</span>
+              <span>{datosGuia?.remitente?.direccion}</span>
             </div>
             <div className="data-entry">
               <label>Ciudad:</label>
-              <span>Ciudad del Remitente</span>
+              <span>{datosGuia?.remitente?.ciudad}</span>
             </div>
           </div>
           <div className="data-aside">
@@ -144,18 +141,19 @@ function App() {
             <div className="data-entry">
               <label>Nombre:</label>
               <span>Destinatario Nombre</span>
+              <span>{datosGuia?.destinatario?.nombre || 'N/A'}</span>
             </div>
             <div className="data-entry">
               <label>Teléfono:</label>
-              <span>555-5678</span>
-            </div>
+              <span>{datosGuia?.destinatario?.telefono || 'N/A'}</span>
+            </div>  
             <div className="data-entry">
               <label>Dirección:</label>
-              <span>Dirección del Destinatario</span>
+              <span>{datosGuia?.destinatario?.direccion}</span>
             </div>
             <div className="data-entry">
               <label>Ciudad:</label>
-              <span>Ciudad del Destinatario</span>
+              <span>{datosGuia?.destinatario?.ciudad}</span>
             </div>
           </div>
           <div className="data-aside">
@@ -173,23 +171,24 @@ function App() {
       </section>
       </div>
 
-      <div className="app-container">
-      <nav className="nav-bar">
-        <h3>Unidades en la Guía</h3>
-      </nav>
-      <nav className="menu-nav">
-        <ul>
-          <li>Unidad</li>
-          <li>Etiqueta 1D</li>
-          <li>Etiqueta 2D</li>
-          <li>Referencia</li>
-          <li>F. Recogida</li>
-          <li>F. Entrega</li>
-          <li>Estado Tracking</li>
-        </ul>
-      </nav>
-      <div className="blank-space"></div>
-    </div>
+      <section className="app-container">
+  {/* ... Otros componentes o secciones ... */}
+  <section className="nav-bar">
+    <h3>Unidades en la Guía</h3>
+  </section>
+  <section className="menu-nav">
+    <ul>
+      <li>Unidad: {datosGuia?.unidades_guia?.id || 'null'}</li>
+      <li>Etiqueta 1D: {datosGuia?.unidades_guia?.etiqueta1d || 'null'}</li>
+      <li>Etiqueta 2D: {datosGuia?.unidades_guia?.etiqueta2d || 'null'}</li>
+      <li>Referencia: {datosGuia?.unidades_guia?.referencia || 'null'}</li>
+      <li>F. Recogida: {datosGuia?.unidades_guia?.fecharecogida || 'null'}</li>
+      <li>F. Entrega: {datosGuia?.unidades_guia?.fechaentrega || 'null'}</li>
+      <li>Estado Tracking: {datosGuia?.unidades_guia?.estadotracking || 'null'}</li>
+    </ul>
+  </section>
+  <div className="blank-space"></div>
+</section>
     </>
       )}
     </div>

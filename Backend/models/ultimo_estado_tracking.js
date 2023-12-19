@@ -1,7 +1,7 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class estados_tracking extends Model {
+export default class ultimo_estado_tracking extends Model {
   static init(sequelize, DataTypes) {
   return super.init({
     id: {
@@ -15,17 +15,17 @@ export default class estados_tracking extends Model {
       allowNull: false
     },
     codigo: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(20),
       allowNull: false
     }
   }, {
     sequelize,
-    tableName: 'estados_tracking',
+    tableName: 'ultimo_estado_tracking',
     schema: 'public',
     timestamps: false,
     indexes: [
       {
-        name: "estados_tracking_pkey",
+        name: "ultimo_estado_tracking_pkey",
         unique: true,
         fields: [
           { name: "id" },

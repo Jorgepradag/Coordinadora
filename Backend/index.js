@@ -8,24 +8,24 @@ dotenv.config();
 
 
 
-async function iniciarServidor(){
+async function iniciarServidor() {
     try {
-        await conexion.sync({force:false}) 
+      await conexion.sync({ force: false });
+      console.log('Conexión a la base de datos establecida correctamente.');
     } catch (error) {
-        console.error("Error al sincronizar: "+ error)
-        return;
+      console.error('Error al sincronizar:', error);
+      return;
     }
+ 
+    const PORT = process.env.APP_PORT || 3000;
+    
+    app.use(cors());
+    app.use(router);
+    app.use(express.urlencoded({ extended: false }));
 
-
-app.use(cors());
-app.use(router)
-app.use(express.urlencoded({extended:false}))
-app.listen(process.env.APP_PORT)
-console.log(`Corriendo http://localhost:${process.env.APP_PORT}`)
-
-
-
-
+    app.listen(PORT, () => {
+        console.log(`Servidor en ejecución en http://localhost:${PORT}`);
+    });
 }
 
 
