@@ -4,6 +4,9 @@ import conexion from './config/database.js'
 const app = express()
 import router from './router/router.js';
 import cors from 'cors';
+import initializeSwagger from './docs/swagger.js';
+
+
 dotenv.config();
 
 
@@ -22,6 +25,9 @@ async function iniciarServidor() {
     app.use(cors());
     app.use(router);
     app.use(express.urlencoded({ extended: false }));
+
+    initializeSwagger(app);
+
 
     app.listen(PORT, () => {
         console.log(`Servidor en ejecución en http://localhost:${PORT}`);

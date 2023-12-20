@@ -25,11 +25,6 @@ function App() {
         } else {
           console.log('No se encontró información asociada a la guía.');
           setGuiaEncontrada(false);
-          setDatosGuia({
-            cliente: { nit: 'N/A', razon_social: 'N/A' },
-            remitente: { /* ... */ },
-            destinatario: { /* ... */ },
-          });
         }
       } catch (error) {
         console.error('Error al buscar la guía:', error);
@@ -122,11 +117,12 @@ function App() {
             <div className="info-box">
               <div className="info-content">
                 <h4>Equipo de Recogida</h4>
-                <span className="large-number">30</span>
+                {datosGuia?.remitente?.equipo && <span>{datosGuia?.remitente?.equipo}</span>}
+        
               </div>
             </div>
             <div className="map-box">
-              <h4>Ubicar Dirección en el Mapa</h4>
+            <h4>Ubicar Dirección en el Mapa</h4>
             </div>
           </div>
         </div>
@@ -160,7 +156,7 @@ function App() {
             <div className="info-box">
               <div className="info-content">
                 <h4>Equipo de Entrega</h4>
-                <span className="large-number">28</span>
+                {datosGuia?.destinatario?.equipo && <span>{datosGuia?.destinatario?.equipo}</span>}
               </div>
             </div>
             <div className="map-box">
@@ -172,19 +168,20 @@ function App() {
       </div>
 
       <section className="app-container">
-  {/* ... Otros componentes o secciones ... */}
+  
   <section className="nav-bar">
     <h3>Unidades en la Guía</h3>
   </section>
   <section className="menu-nav">
     <ul>
-      <li>Unidad: {datosGuia?.unidades_guia?.id || 'null'}</li>
-      <li>Etiqueta 1D: {datosGuia?.unidades_guia?.etiqueta1d || 'null'}</li>
-      <li>Etiqueta 2D: {datosGuia?.unidades_guia?.etiqueta2d || 'null'}</li>
-      <li>Referencia: {datosGuia?.unidades_guia?.referencia || 'null'}</li>
-      <li>F. Recogida: {datosGuia?.unidades_guia?.fecharecogida || 'null'}</li>
-      <li>F. Entrega: {datosGuia?.unidades_guia?.fechaentrega || 'null'}</li>
-      <li>Estado Tracking: {datosGuia?.unidades_guia?.estadotracking || 'null'}</li>
+      <li>Unidad: {datosGuia?.unidad?.id}</li>
+      <li>Etiqueta 1D: {datosGuia?.unidad?.etiqueta1d}</li>
+      <li>Etiqueta 2D: {datosGuia?.unidad?.etiqueta2d}</li>
+      <li>Referencia: {datosGuia?.unidad?.referencia_detalle}</li>
+      <li>F. Recogida: {datosGuia?.unidad?.fecha_hora_recogida || 'null'}</li>
+      <li>F. Entrega: {datosGuia?.unidad?.fecha_hora_entrega || 'null'}</li>
+      <li>Estado Tracking: {datosGuia?.ultimo_estado_tracking?.codigo} - {datosGuia?.ultimo_estado_tracking?.nombre}</li>
+
     </ul>
   </section>
   <div className="blank-space"></div>

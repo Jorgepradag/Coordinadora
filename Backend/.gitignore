@@ -1,0 +1,50 @@
+.env
+
+{
+    "guia_encontrada":true,
+    "dato_guia": {
+        "cliente": {
+            "razon_social": null,
+            "nit":"890904713",
+            "div":"99"
+        },
+        "remitente":{
+            "nombre":"PAVAS VALENCIA JUAN BAUTISTA",
+            "telefono":"3779536",
+            "div": null,
+            "nit": null,
+            "direccion": "Cl. 52 #53-20, Amaga, Amagá, Antioquia",
+            "equipo": "0",
+            "ciudad":"AMAGA (ANT)",
+            "lat": 0,
+            "lng": 0
+        },
+        "destinatario":{
+            "nombre":"PAVAS VALENCIA JUAN BAUTISTA",
+            "telefono":"3779536",
+            "direccion": "Cl. 52 #53-20, Amaga, Amagá, Antioquia",
+            "equipo": "0",
+            "ciudad":"AMAGA (ANT)",
+            "lat": 0,
+            "lng": 0
+        },
+        "tipo_poblacion_destino": "D",
+        "unidades":{
+            "total": 1,
+            "detalle":[
+                {
+                    "ultimo_estado_tracking":{
+                        "nombre":null,
+                        "codigo":null
+                    },
+                    "etiqueta1d":"773940084526001",
+                    "numero_unidad": 1,
+                    "referencia_detalle": "73940084526.1",
+                    "etiqueta2d": "70010010200070000073940084526001",
+                    "fecha_hora_recogida": null,
+                    "fecha_hora_entrega": null
+                }
+            ]
+        }
+    }
+}
