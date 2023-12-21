@@ -46,13 +46,11 @@ router.get('/api', async (req, res) => {
    const numero_guia = req.params.numero_guia;
  
    if (!/^\d+$/.test(numero_guia)) {
-    
      const mensajeError = "Error: El tipo de dato ingresado no es válido";
      return res.status(400).json({ error: mensajeError });
    }
  
    if (numero_guia.length > 11) {
-    
      const mensajeError = "Error: La longitud ingresada no corresponde al máximo permitido";
      return res.status(400).json({ error: mensajeError });
    }

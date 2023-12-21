@@ -58,7 +58,7 @@ function App() {
         <button onClick={handleSearch}>Buscar</button>
       </nav>
 
-      {guiaEncontrada === null }
+      
       {guiaEncontrada === false && (
         <div className="guia-no-encontrada">
           <img src={oopsImage} alt="Guía no encontrada" className="centered-image" />

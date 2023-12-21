@@ -54,3 +54,7 @@ Este proyecto tiene como objetivo consultar la información de una guía determi
 ## Consideraciones de Interés
 
 Asegúrate de tener un gestor de bases de datos PostgreSQL instalado. Se recomienda el uso de herramientas como DBeaver para gestionar y visualizar la base de datos.
+
+#### link video explicando el desarrollo
+
+https://www.youtube.com/watch?v=el5mou69ooI
